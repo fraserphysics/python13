@@ -1,0 +1,39 @@
+\documentclass[]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{amsmath,amsfonts}
+%\usepackage{showlabels}
+\usepackage[pdftex]{graphicx,color}
+\title{Using the Henon System to Illustrate Software Tools}
+
+\author{Andrew M.\ Fraser}
+\begin{document}
+\maketitle
+\begin{abstract}
+  This is a short abstract
+\end{abstract}
+
+\section{From Wikipedia}
+\label{sec:wikipedia}
+
+From http://en.wikipedia.org/wiki/Henon\_map I copied this equation
+\begin{align*}
+   x_{n+1} &= y_n+1-a x_n^2,\\
+  y_{n+1} &= b x_n.
+\end{align*}
+
+One can use gnu-make, \texttt{Makefile} and the code in \texttt{plot.py} and
+\texttt{henon.py} to make Fig.~\ref{fig:dots}
+\begin{figure}
+  \centering
+  \resizebox{0.75\textwidth}{!}{\includegraphics{dots.pdf}}
+  \caption{Five thousand iterations of the Henon system.}
+  \label{fig:dots}
+\end{figure}
+
+
+\end{document}
+
+%%%---------------
+%%% Local Variables:
+%%% eval: (TeX-PDF-mode)
+%%% End:
