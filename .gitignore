@@ -1,5 +1,10 @@
 *.pyc
 *.aux
 *.log
+*.bbl
+*.blg
 /dots.pdf
 /henon.pdf
+/colors.pdf
+/count.pdf
+/dim.pdf

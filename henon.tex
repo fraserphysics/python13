@@ -1,4 +1,4 @@
-\documentclass[]{article}
+\documentclass[twocolumn]{article}
 \usepackage{amsmath,amsfonts}
 \usepackage{amsmath,amsfonts}
 %\usepackage{showlabels}
@@ -9,28 +9,96 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-  This is a short abstract
+  This document illustrates most of the results of the examples I will
+  use on the first day of lectures on software tools at LANL in June
+  of 2013.  One should be able to build this document by fetching the
+  source from https://github.com/fraserphysics/python13 and typing
+  \emph{make} at a Linux command line.
 \end{abstract}
 
 \section{From Wikipedia}
 \label{sec:wikipedia}
 
-From http://en.wikipedia.org/wiki/Henon\_map I copied this equation
+From http://en.wikipedia.org/wiki/Henon\_map, I copied this equation
 \begin{align*}
    x_{n+1} &= y_n+1-a x_n^2,\\
-  y_{n+1} &= b x_n.
+  y_{n+1} &= b x_n
 \end{align*}
+and the values $a = 1.4$ and $b = 0.3$.
+
+\section{Figures}
+\label{sec:figures}
 
 One can use gnu-make, \texttt{Makefile} and the code in \texttt{plot.py} and
 \texttt{henon.py} to make Fig.~\ref{fig:dots}
 \begin{figure}
   \centering
-  \resizebox{0.75\textwidth}{!}{\includegraphics{dots.pdf}}
+  \resizebox{0.95\columnwidth}{!}{\includegraphics{dots.pdf}}
   \caption{Five thousand iterations of the Henon system.}
   \label{fig:dots}
 \end{figure}
 
+Figure \ref{fig:colors} illustrates the varying density at finite
+resolution.
+\begin{figure}
+  \centering
+  \resizebox{0.95\columnwidth}{!}{\includegraphics{colors.pdf}}
+  \caption{The colors indicate the count in each box from a
+    trajectory of length 10,000.  The box
+    resolution is $\Delta_x = 0.009$, $\Delta_y=0.003$. }
+  \label{fig:colors}
+\end{figure}
 
+Figure \ref{fig:dim} is a \emph{blast from the past}.  In the 1980's
+and 1990's the \emph{dimension industry} filled shelves in libraries
+with plots of $\log(N)$ as a function of $\log(\Delta_x)$.  To
+demonstrate BibTeX I quote the citation\cite{russell1980} that
+Wikipedia uses for the Hausdorff dimension of the Henon attractor.
+\begin{figure}
+  \centering
+  \resizebox{0.95\columnwidth}{!}{\includegraphics{dim.pdf}}
+  \caption{Log of the number of occupied boxes as a function of the log
+    of the box edge length using sample trajectory of 10,000 samples.
+    Fit a line to the sloping straight part of this plot to estimate
+    \emph{the box counting dimension} of the attractor.  To get more
+    range, you could use python's \emph{set} data type.}
+  \label{fig:dim}
+\end{figure}
+
+Figure \ref{fig:count} presents the the log of the number of samples
+that fall in each box plotted against the log of the rank of the box.
+Perhaps the constant slope of the part of the curve on the left
+indicates a \emph{power law}.
+\begin{figure}
+  \centering
+  \resizebox{0.95\columnwidth}{!}{\includegraphics{count.pdf}}
+  \caption{Log of the number of samples in each occupied box plotted
+    against the log of the box rank.  The trajectory analyzed has
+    100,000 samples and the $x$ and $y$ resolutions are 0.009 and
+    0.003 respectively.  Using python's \emph{dict} data type might
+    improve the performance of the code.}
+  \label{fig:count}
+\end{figure}
+
+\section{Exercises}
+\label{sec:exercises}
+\begin{enumerate}
+\item \label{it:set} Make an version of Fig.~\ref{fig:dim} that
+  extends the x-axis to -8 by writing your own versions of the
+  functions \texttt{bins} and \texttt{count\_array} in the file
+  \texttt{henon.py}.  I believe that by using python's \emph{set} data
+  type and by binning each sample at all resolutions before going to
+  the next iteration, you can get both speed and memory performance
+  improvements over my code.
+\item Make an version of Fig.~\ref{fig:count} by writing your own
+  versions of the functions \texttt{bins}, \texttt{count\_array} and
+  \texttt{log\_log} in the file \texttt{henon.py}.  Use the python
+  \emph{dict} data type instead of numpy arrays for counting the
+  number of samples in each occupied box.  I believe that you will get
+  improved memory performance but not much speed improvement.
+\end{enumerate}
+
+\bibliographystyle{unsrt} \bibliography{local}
 \end{document}
 
 %%%---------------
